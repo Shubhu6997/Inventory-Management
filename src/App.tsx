@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import ProductTable from './components/ProductTable';
+import FilterPanel from './components/FilterPanel';
+import ProductModal from './components/ProductModal';
 
-function App() {
+const App: React.FC = () => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="p-6">
+      <h1 className="text-xl font-bold mb-4">Inventory Dashboard</h1>
+      <FilterPanel />
+      <button onClick={() => setShowModal(true)} className="mb-4 bg-green-600 text-white px-4 py-1 rounded">
+        + Add Product
+      </button>
+      <ProductTable />
+      {showModal && <ProductModal onClose={() => setShowModal(false)} />}
     </div>
   );
-}
+};
 
 export default App;
